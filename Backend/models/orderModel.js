@@ -67,5 +67,5 @@ const orderSchema = mongo.Schema({
 })
 
 
-const Order = mongo.model('User', orderSchema)
+const Order = mongo.model('Order', orderSchema)
 module.exports = Order
