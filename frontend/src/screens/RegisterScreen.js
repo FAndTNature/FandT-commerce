@@ -7,7 +7,7 @@ import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
 import { register } from '../actions/userActions'
 
-export const RegisterScreen = ({ location, history }) => {
+const RegisterScreen = ({ location, history }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

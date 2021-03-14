@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from "react-router-dom"
-import { Row, Col, Button, Form} from "react-bootstrap"
+import { Row, Col, Button, Form, Table } from "react-bootstrap"
+import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { getUserDetails, updateUserDetails } from '../actions/userActions'
+import { getUserDetails, updateUserDetails, getUserOrders } from '../actions/userActions'
 
 export const ProfileScreen = ({ location, history }) => {
     const [name, setName] = useState('')
@@ -24,6 +24,9 @@ export const ProfileScreen = ({ location, history }) => {
     const userUpdates = useSelector(state => state.userUpdates)
     const { success } = userUpdates
 
+    const userOrders = useSelector(state => state.userOrders)
+    const { loading:loadingOrders, errors, orders } = userOrders
+
     useEffect(()=> {
         if(!userInfo) {
             history.push('/login')
@@ -36,6 +39,7 @@ export const ProfileScreen = ({ location, history }) => {
                 setName(user.name)
                 setEmail(user.email)
             }
+            dispatch(getUserOrders())
         }
     }, [dispatch, history, user.email, user.name, userInfo])
 
@@ -51,7 +55,7 @@ export const ProfileScreen = ({ location, history }) => {
     }
 
     return <Row>
-        <Col md={4}>
+        <Col md={3}>
             <h2>Profile</h2>
                 {error && <Message variant="danger">{error}</Message>}
                 {message && <Message variant="danger">{message}</Message>}
@@ -78,8 +82,37 @@ export const ProfileScreen = ({ location, history }) => {
                         Update
                     </Button></Form>
         </Col>
-        <Col md={8}>
+        <Col md={9}>
             <h2>My Orders</h2>
+            {loadingOrders ? <Loader></Loader> : errors ? <Message variant="danger">{errors}</Message> : (
+                <Table striped bordered hover responsive classNames="table-sm" size="sm">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>DATE</th>
+                            <th>TOTAL</th>
+                            <th>PAID</th>
+                            <th>DELIVERD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {orders.map(order => 
+                                <tr key={order._id}>
+                                    <td>{order._id}</td>
+                                    <td>{order.createdAt.substring(0, 10)}</td>
+                                    <td>₹ {order.totalPrice}</td>
+                                    <td>{order.paidAt ? order.paidAt.substring(0, 10): <i className="fas fa-times" style={{color: 'red'}}></i>}</td>
+                                    <td>{order.isDelivered ? order.isDelivered.substring(0, 10): <i className="fas fa-times" style={{color: 'red'}}></i>}</td>
+                                    <td>
+                                        <LinkContainer to={`/order/${order._id}`}>
+                                            <Button variant="dark" className="btn-sm">Details</Button>
+                                        </LinkContainer>
+                                    </td>
+                                </tr>
+                            )}
+                    </tbody>
+                </Table>
+            )}
         </Col>
     </Row>
 }
