@@ -17,7 +17,7 @@ const Header = () => {
             <Navbar bg="primary" variant= "dark" expand="lg" collapseOnSelect>
                 <Container>
                     <LinkContainer to="/">
-                        <Navbar.Brand>F&T Nature</Navbar.Brand>
+                        <Navbar.Brand><i class="fab fa-pagelines"></i> F&T Nature</Navbar.Brand>
                     </LinkContainer>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">

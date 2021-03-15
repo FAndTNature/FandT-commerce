@@ -18,7 +18,6 @@ export const All = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(name, email, message)
     emailjs
       .sendForm(
         'service_gp7h96n', 'template_fl6azx9', e.target, 'user_EYBAcb2SG5sb114dYWY98'
@@ -32,18 +31,18 @@ export const All = (props) => {
           console.log(error.text)
         }
       )
-      e.target.reset();
+      e.target.reset()
   }
   const imgArray = ["img/portfolio/01-small.jpg", "img/portfolio/02-small.jpg", "img/portfolio/03-small.jpg","img/portfolio/04-small.jpg", "img/portfolio/05-small.jpg", "img/portfolio/06-small.jpg", "img/portfolio/07-small.jpg", "img/portfolio/08-small.jpg", "img/portfolio/09-small.jpg"]
 
     return (
-        <div>
+        <div  style={{margin: "0.0rem"}}>
       <header id='header'>
         <div className='intro'>
           <div className='overlay'>
             <div className='container'>
-              <div className='row'>
-                <div className='col-md-8 col-md-offset-2 intro-text'>
+              <Row>
+                <Col md={12} className='intro-text'>
                   <h1>
                     {props.data.Header ? props.data.Header.title : 'Loading'}
                     <span></span>
@@ -55,8 +54,8 @@ export const All = (props) => {
                   >
                     Learn More
                   </a>{' '}
-                </div>
-              </div>
+                </Col>
+              </Row>
             </div>
           </div>
         </div>
@@ -310,22 +309,22 @@ export const All = (props) => {
                 <ul>
                   <li>
                     <a href={props.data.Contact ? props.data.Contact.instagram : '/'}>
-                      <i className='fab fa-instagram' style={{fontSize: "2rem", color: '#608dfd'}}></i>
+                      <i className='fab fa-instagram' style={{fontSize: "2rem", color: '#fff'}}></i>
                     </a>
                   </li>
                   <li>
                     <a href={props.data.Contact ? props.data.Contact.linkedin : '/'}>
-                      <i className='fab fa-linkedin' style={{fontSize: "2rem", color: '#608dfd'}}></i>
+                      <i className='fab fa-linkedin' style={{fontSize: "2rem", color: '#fff'}}></i>
                     </a>
                   </li>
                   <li>
                     <a href={props.data.Contact ? props.data.Contact.twitter : '/'}>
-                      <i className='fab fa-twitter' style={{fontSize: "2rem", color: '#608dfd'}}></i>
+                      <i className='fab fa-twitter' style={{fontSize: "2rem", color: '#fff'}}></i>
                     </a>
                   </li>
                   <li>
                     <a href={props.data.Contact ? props.data.Contact.facebook : '/'}>
-                      <i className='fab fa-facebook' style={{fontSize: "2rem", color: '#608dfd'}}></i>
+                      <i className='fab fa-facebook' style={{fontSize: "2rem", color: '#fff'}}></i>
                     </a>
                   </li>
                 </ul>
