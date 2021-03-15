@@ -14,7 +14,7 @@ const Header = () => {
 
     return (
         <header>
-            <Navbar bg="dark" variant= "dark" expand="lg" collapseOnSelect>
+            <Navbar bg="primary" variant= "dark" expand="lg" collapseOnSelect>
                 <Container>
                     <LinkContainer to="/">
                         <Navbar.Brand>F&T Nature</Navbar.Brand>
@@ -22,6 +22,12 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ml-auto">
+                        <LinkContainer to="/">
+                            <Nav.Link><i className="fas fa-home"></i> About</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to="/shop">
+                            <Nav.Link><i className="fas fa-shopping-bag"></i> Shop</Nav.Link>
+                        </LinkContainer>
                         <LinkContainer to="/cart">
                             <Nav.Link><i className="fas fa-shopping-cart"></i> Cart</Nav.Link>
                         </LinkContainer>
