@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import emailjs from 'emailjs-com'
-import { Row, Col, Button, Form, Carousel } from "react-bootstrap"
+import { Row, Col, Carousel } from "react-bootstrap"
 const initialState = {
   name: '',
   email: '',
@@ -122,13 +122,10 @@ export const All = (props) => {
         </div>
       </div>
     </div>
-    <div id='services' className='text-center'>
+    <div id='services' className='text-center' style={{background: '#78c2ad'}}>
       <div className='container'>
         <div className='section-title'>
           <h2>Our Services</h2>
-          <p>
-           
-          </p>
         </div>
         <div className='row'>
           {props.data.Services
@@ -225,11 +222,10 @@ export const All = (props) => {
       </div>
     </div>
     <div>
-      <div id='contact'>
+      <div id='contact' style={{background: '#78c2ad'}}>
         <div className='container'>
-          <div className='col-md-8'>
             <Row>
-              <div className='section-title'>
+              <Col md={5} className='section-title'>
               <div>
                 <h2>Get In Touch</h2>
                 <p>
@@ -237,11 +233,33 @@ export const All = (props) => {
                   get back to you as soon as possible.
                 </p>
                 </div>
-              </div>
+              </Col>
+              <Col md={7} className='section-title'>
+              <h2>Contact Info</h2>
+              <p>
+                <span>
+                  <i className='fa fa-map-marker'></i> &nbsp;
+                </span>
+                {props.data.Contact ? props.data.Contact.address : 'loading'}
+              </p>
+              <p>
+                <span>
+                  <i className='fa fa-phone'></i>
+                </span>{' '}
+                {props.data.Contact ? props.data.Contact.phone : 'loading'}
+              </p>
+              <p >
+                <span>
+                  <i className='fas fa-envelope'></i>
+                </span>{' '}
+                <a href="mailto:fandtnature@gmail.com" style={{color: '#fff'}}>{props.data.Contact ? props.data.Contact.email : 'loading'}</a>
+              </p>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={3}></Col>
+              <Col md={6}>
               <form name='sentMessage' validate onSubmit={handleSubmit}>
-                <div className='row'>
-                  <div className='col-md-6'>
-                    <div className='form-group'>
                       <input
                         type='text'
                         id='name'
@@ -252,10 +270,7 @@ export const All = (props) => {
                         onChange={handleChange}
                       />
                       <p className='help-block text-danger'></p>
-                    </div>
-                  </div>
-                  <div className='col-md-6'>
-                    <div className='form-group'>
+
                       <input
                         type='email'
                         id='email'
@@ -266,9 +281,7 @@ export const All = (props) => {
                         onChange={handleChange}
                       />
                       <p className='help-block text-danger'></p>
-                    </div>
-                  </div>
-                </div>
+                    
                 <div className='form-group'>
                   <textarea
                     name='message'
@@ -286,63 +299,40 @@ export const All = (props) => {
                   Send Message
                 </button>
               </form>
+              </Col>
+              <Col md={3}></Col>
             </Row>
-          </div>
-          <div className='col-md-3 col-md-offset-1 contact-info'>
-            <div className='contact-item'>
-              <h3>Contact Info</h3>
-              <p>
-                <span>
-                  <i className='fa fa-map-marker'></i> Address
-                </span>
-                {props.data.Contact ? props.data.Contact.address : 'loading'}
-              </p>
-            </div>
-            <div className='contact-item'>
-              <p>
-                <span>
-                  <i className='fa fa-phone'></i> Phone
-                </span>{' '}
-                {props.data.Contact ? props.data.Contact.phone : 'loading'}
-              </p>
-            </div>
-            <div className='contact-item'>
-              <p>
-                <span>
-                  <i className='fas fa-envelope'></i> Email
-                </span>{' '}
-                {props.data.Contact ? props.data.Contact.email : 'loading'}
-              </p>
-            </div>
-          </div>
-          <div className='col-md-12'>
-            <div className='row'>
+
+          <Row>
+          <Col md={3}></Col>
+          <Col md={6}>
               <div className='social'>
                 <ul>
                   <li>
                     <a href={props.data.Contact ? props.data.Contact.instagram : '/'}>
-                      <i className='fab fa-instagram' style={{fontSize: "3rem"}}></i>
+                      <i className='fab fa-instagram' style={{fontSize: "2rem", color: '#608dfd'}}></i>
                     </a>
                   </li>
                   <li>
                     <a href={props.data.Contact ? props.data.Contact.linkedin : '/'}>
-                      <i className='fab fa-linkedin' style={{fontSize: "3rem"}}></i>
+                      <i className='fab fa-linkedin' style={{fontSize: "2rem", color: '#608dfd'}}></i>
                     </a>
                   </li>
                   <li>
                     <a href={props.data.Contact ? props.data.Contact.twitter : '/'}>
-                      <i className='fab fa-twitter' style={{fontSize: "3rem"}}></i>
+                      <i className='fab fa-twitter' style={{fontSize: "2rem", color: '#608dfd'}}></i>
                     </a>
                   </li>
                   <li>
                     <a href={props.data.Contact ? props.data.Contact.facebook : '/'}>
-                      <i className='fab fa-facebook' style={{fontSize: "3rem"}}></i>
+                      <i className='fab fa-facebook' style={{fontSize: "2rem", color: '#608dfd'}}></i>
                     </a>
                   </li>
                 </ul>
               </div>
-            </div>
-          </div>
+            </Col>
+            <Col md={3}></Col>
+          </Row>
         </div>
       </div>
       
